@@ -1,0 +1,17 @@
+<div class="container mt-5">
+	<h5 class="align-middle">List Albums of user</h5>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+    </tr>
+  </thead>
+  <tbody>
+	<tr *ngFor="let item of albums" (click)="photosAlbum(item)" class="userid-{{item.userId}}">
+		<th scope="row">{{item.id}}</th>
+		<td>{{item.title}}</td>
+	</tr>
+  </tbody>
+ </table>	
+</div>

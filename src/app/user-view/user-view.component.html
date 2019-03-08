@@ -1,0 +1,27 @@
+<div class="container">
+<h3>View Detail User</h3>
+<table class="table" *ngIf="userData">
+	<tbody>
+		<tr>
+			<td><strong>ID: </strong></td>
+			<td>{{userData.id}}</td>
+		</tr>
+		<tr>
+			<td><strong>Name: </strong></td>
+			<td>{{userData.name}}</td>
+		</tr>
+		<tr>
+			<td><strong>Username: </strong></td>
+			<td>{{userData.username}}</td>
+		</tr>
+		<tr>
+			<td><strong>Email: </strong></td>
+			<td>{{userData.email}}</td>
+		</tr>		
+	</tbody>
+</table>
+<div *ngIf="albumData">
+	<app-albums [albums]="albumData"></app-albums>
+</div>
+<button type="button" class="btn btn-primary" (click)="back()">Back</button>
+</div>

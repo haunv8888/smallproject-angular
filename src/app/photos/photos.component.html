@@ -1,0 +1,20 @@
+<div class="container">
+<h3>Photos Album</h3>
+<table class="table" *ngIf="photos">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Image</th>
+    </tr>
+  </thead>
+  <tbody>
+	<tr *ngFor="let item of photos">
+		<th scope="row">{{item.id}}</th>
+		<td>{{item.title}}</td>
+		<td><img [src]="item.url" ></td>
+	</tr>
+  </tbody>
+ </table>
+ <button type="button" class="btn btn-primary" (click)="back()">Back</button>
+ </div>
