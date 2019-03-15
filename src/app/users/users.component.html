@@ -1,5 +1,8 @@
 <div class="container">
 <h3>Manager User</h3>
+<div *ngIf="loading$ | async"><h3>Loading...</h3></div>
+<div *ngIf="error$ | async"><h3>Error status: {{ error$ | async }}</h3></div>
+
 <table class="table">
   <thead>
     <tr>
@@ -12,7 +15,7 @@
     </tr>
   </thead>
   <tbody>
-	<tr *ngFor="let item of dataObj" (click)="itemDetail(item)">
+	<tr *ngFor="let item of users$ | async" (click)="itemDetail(item)">
 		<th scope="row">{{item.id}}</th>
 		<td>{{item.name}}</td>
 		<td>{{item.username}}</td>

@@ -14,6 +14,7 @@ import { UserViewComponent } from './user-view/user-view.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { AlbumsComponent } from './albums/albums.component';
 import { PhotosComponent } from './photos/photos.component';
+import { StoreModule } from './store/store.module';
 
 
 
@@ -30,6 +31,7 @@ import { PhotosComponent } from './photos/photos.component';
     BrowserModule,
 	FormsModule,
 	AppRoutingModule,
+	StoreModule,
 	HttpModule
   ],
   providers: [ApidataService],

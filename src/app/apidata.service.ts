@@ -3,8 +3,10 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/empty'
 import { Album } from './models/album';
 import { Photo } from './models/photo';
+import { DATA_TYPES } from './store/model';
 
 @Injectable()
 export class ApidataService {
@@ -17,6 +19,14 @@ export class ApidataService {
 	this.URL_USERS = `${this.URL}/users`;
 	this.URL_ALBUMS = `${this.URL}/albums`;
 	this.URL_PHOTOS = `${this.URL}/photos`;
+  }
+  
+  public loadData = (type: string, id: string = null): Observable<any>=> {
+	  if (DATA_TYPES.USERS == type) return this.loadUsers();
+	  if (DATA_TYPES.USERS_DETAIL == type && id !== null) return this.getDetailUesr(id);
+	  if (DATA_TYPES.PHOTOS == type && id) return this.loadPhotos(id);
+	  if (DATA_TYPES.ALBUMS == type && id) return this.loadAlbums(id);
+	  return Observable.empty();
   }
   
   public getDetailUesr(id: any): Observable<any> {
@@ -36,19 +46,21 @@ export class ApidataService {
     }).catch(error => this.handleError(error));
   }
   
-  public loadAlbums(): Observable<Album[]>{
+  public loadAlbums(id: string): Observable<Album[]>{
     let url = this.URL_ALBUMS;
 	console.log(url);
     return this.http.get(url).map((res: Response) => {
-      return res.json();
+		let data: any = res.json().filter((item)=>item.userId == id)
+      return data;
     }).catch(error => this.handleError(error));
   }
   
-  public loadPhotos(): Observable<Photo[]>{
+  public loadPhotos(id: string): Observable<Photo[]>{
     let url = this.URL_PHOTOS;
 	console.log(url);
     return this.http.get(url).map((res: Response) => {
-      return res.json();
+		let data: any = res.json().filter((item)=>item.albumId == id)
+      return data;		
     }).catch(error => this.handleError(error));	  
   }
   

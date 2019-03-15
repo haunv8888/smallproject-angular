@@ -10,7 +10,7 @@ import { UserViewComponent } from '../user-view/user-view.component';
 const appRoutes: Routes = [
 	{ path: '', redirectTo: '/users', pathMatch: 'full' },
 	{ path: 'users',  component: UsersComponent },
-	{ path: 'photos/:id',  component: PhotosComponent },
+	{ path: 'photos/:userid/:id',  component: PhotosComponent },
 	{ path: 'user/:id',  component: UserViewComponent }];
 
 @NgModule({

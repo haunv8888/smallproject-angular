@@ -1,6 +1,8 @@
 <div class="container">
 <h3>View Detail User</h3>
-<table class="table" *ngIf="userData">
+<div *ngIf="loading$ | async"><h3>Loading...</h3></div>
+<div *ngIf="error$ | async"><h3>Error status: {{ error$ | async }}</h3></div>
+<table class="table" *ngIf="userData$ | async as userData">
 	<tbody>
 		<tr>
 			<td><strong>ID: </strong></td>
@@ -20,8 +22,8 @@
 		</tr>		
 	</tbody>
 </table>
-<div *ngIf="albumData">
-	<app-albums [albums]="albumData"></app-albums>
+<div >
+	<app-albums [albums]="albumData$ | async" [userid]="id" [loading]="loadingAl$ | async" [error] ="errorAl$ | async"></app-albums>
 </div>
 <button type="button" class="btn btn-primary" (click)="back()">Back</button>
 </div>

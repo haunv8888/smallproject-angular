@@ -1,6 +1,8 @@
 <div class="container">
 <h3>Photos Album</h3>
-<table class="table" *ngIf="photos">
+<div *ngIf="loading$ | async"><h3>Loading...</h3></div>
+<div *ngIf="error$ | async"><h3>Error status: {{ error$ | async }}</h3></div>
+<table class="table">
   <thead>
     <tr>
       <th scope="col">#</th>
@@ -9,7 +11,7 @@
     </tr>
   </thead>
   <tbody>
-	<tr *ngFor="let item of photos">
+	<tr *ngFor="let item of photoData$ | async">
 		<th scope="row">{{item.id}}</th>
 		<td>{{item.title}}</td>
 		<td><img [src]="item.url" ></td>
