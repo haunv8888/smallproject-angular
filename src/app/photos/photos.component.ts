@@ -24,7 +24,7 @@ export class PhotosComponent implements OnInit {
 	  let userid = this.route.snapshot.paramMap.get('userid');
 	  if (id && userid) {
 		  this.userid = userid;
-		  this.apidata.loadPhotos().subscribe((res) => {
+		  this.apidata.loadPhotos(id).subscribe((res) => {
 			  let newdata = res.filter((item) => {
 				  return item.albumId == id;
 			  });

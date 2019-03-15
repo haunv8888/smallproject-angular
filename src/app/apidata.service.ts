@@ -44,11 +44,12 @@ export class ApidataService {
     }).catch(error => this.handleError(error));
   }
   
-  public loadPhotos(): Observable<Photo[]>{
+  public loadPhotos(id: string): Observable<Photo[]>{
     let url = this.URL_PHOTOS;
 	console.log(url);
     return this.http.get(url).map((res: Response) => {
-      return res.json();
+		let data: any = res.json().filter((item)=>item.albumId == id)
+      return data;
     }).catch(error => this.handleError(error));	  
   }
   
