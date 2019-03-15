@@ -10,6 +10,7 @@ import { Album } from '../models/album';
 })
 export class AlbumsComponent implements OnInit {
   @Input() albums: Album[] = [];
+  @Input() userid: string;
   constructor(public apidata: ApidataService, private _router: Router) { }
 
   ngOnInit() {
@@ -18,7 +19,7 @@ export class AlbumsComponent implements OnInit {
   public photosAlbum(item: any): void{
 	  let id = item.id;
 	  if (id) {
-		  this._router.navigate(['/photos', id]);
+		  this._router.navigate(['/photos', this.userid, id]);
 	  }
   }
 }

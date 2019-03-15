@@ -11,6 +11,7 @@ export class UserViewComponent implements OnInit {
 
 	userData: any;
 	albumData: any;
+	id: string;
 	constructor(
 	private route: ActivatedRoute,
 	private router: Router,
@@ -21,6 +22,7 @@ export class UserViewComponent implements OnInit {
   ngOnInit() {
 	  let id = this.route.snapshot.paramMap.get('id');
 	  if (id) {
+		  this.id = id;
 		  this.apidata.getDetailUesr(id).subscribe((res) => {
 			  this.userData = res;
 		  });

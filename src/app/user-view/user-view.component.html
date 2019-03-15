@@ -21,7 +21,7 @@
 	</tbody>
 </table>
 <div *ngIf="albumData">
-	<app-albums [albums]="albumData"></app-albums>
+	<app-albums [albums]="albumData" [userid]="id"></app-albums>
 </div>
 <button type="button" class="btn btn-primary" (click)="back()">Back</button>
 </div>

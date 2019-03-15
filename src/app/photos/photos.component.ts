@@ -12,6 +12,7 @@ import { Photo } from '../models/photo';
 export class PhotosComponent implements OnInit {
 
   public photos: Photo[];
+  public userid: string;
   constructor(
 	private route: ActivatedRoute,
 	private router: Router,
@@ -20,7 +21,9 @@ export class PhotosComponent implements OnInit {
 
   ngOnInit() {
 	  let id = this.route.snapshot.paramMap.get('id');
-	  if (id) {
+	  let userid = this.route.snapshot.paramMap.get('userid');
+	  if (id && userid) {
+		  this.userid = userid;
 		  this.apidata.loadPhotos().subscribe((res) => {
 			  let newdata = res.filter((item) => {
 				  return item.albumId == id;
@@ -31,7 +34,7 @@ export class PhotosComponent implements OnInit {
   }
   
   public back(){
-	  this.router.navigate(['/users']);
+	  this.router.navigate(['/user', this.userid]);
   }
 
 }
